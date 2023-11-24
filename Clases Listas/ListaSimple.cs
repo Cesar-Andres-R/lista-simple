@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -58,7 +59,80 @@ namespace lista_simple.Clases_Listas
             {
                 Console.WriteLine("La lista esta vacia");
             }
+
+
         }
 
+
+        public Nodo BuscarElemento(int elemento)
+        {
+            Nodo actual = Primero;
+
+            while (actual != null)
+            {
+                if (actual.Dato == elemento)
+                {
+                    return actual; // Se encontró el elemento, devolver el nodo actual
+                }
+
+                actual = actual.Siguiente;
+            }
+
+            return null; // No se encontró el elemento en la lista 
+        }
+
+
+        public void InsertarEnMedio(int elemento)
+        {
+            Nodo nuevo = new Nodo
+            {
+                Dato = elemento
+            };
+
+            if (Primero == null)
+            {
+                // Si la lista está vacía, simplemente se agrega
+                // el elemento como el primero y el último
+                Primero = nuevo;
+                Ultimo = nuevo;
+                nuevo.Siguiente = null;
+            }
+            else
+            {
+                Nodo actual = Primero;
+                Nodo anterior = null;
+                int longitud = ObtenerLongitud();
+
+                // Si la longitud de la lista es impar,
+                // se avanza un nodo extra para llegar al medio
+                int pasos = (longitud % 2 == 0) ? longitud / 2 : (longitud / 2) + 1;
+
+                for (int i = 0; i < pasos; i++)
+                {
+                    anterior = actual;
+                    actual = actual.Siguiente;
+                }
+
+                // Insertar el nuevo nodo en la mitad
+                anterior.Siguiente = nuevo;
+                nuevo.Siguiente = actual;
+            }
+
+            Console.WriteLine("Se agregó el elemento en la mitad de la lista.");
+        }
+
+        private int ObtenerLongitud()
+        {
+            Nodo actual = Primero;
+            int longitud = 0;
+
+            while (actual != null)
+            {
+                longitud++;
+                actual = actual.Siguiente;
+            }
+
+            return longitud;
+        }
     }
 }
