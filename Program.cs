@@ -16,5 +16,9 @@ namespace lista_simple
             Console.WriteLine("Los elementos dentro de la lista son: ");
             lista.Mostrar();
         }
+
+
+
+        //XDDDDDDDDDDDDDDDDDDDDDDDDD
     }
 }
