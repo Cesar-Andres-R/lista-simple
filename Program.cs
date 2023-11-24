@@ -17,8 +17,5 @@ namespace lista_simple
             lista.Mostrar();
         }
 
-
-
-        //XDDDDDDDDDDDDDDDDDDDDDDDDD
     }
 }
